@@ -128,7 +128,7 @@ void choose(){
     }
     else if (x==7)
     {
-        void Detect_Image_Edges();
+        Detect_Image_Edges();
     }
     else if (x==8)
     {
