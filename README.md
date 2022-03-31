@@ -68,6 +68,20 @@ void black_and_white(){
     }      
     }
 }
+void Detect_Image_Edges(){
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            if (image[i][j]<127&&image[i][j+1]<127)
+            {
+                while (image[i][j+1]<127)
+                {
+                    image[i][j+1]=255;
+                    j+=1;
+                }          
+            }
+            }      
+    }
+}
 void choose(){
     cout<<"press 1 to black and white filter "<<endl;
     cout<<"press 2 to invert image filter "<<endl;
@@ -114,7 +128,7 @@ void choose(){
     }
     else if (x==7)
     {
-        return;
+        void Detect_Image_Edges();
     }
     else if (x==8)
     {
