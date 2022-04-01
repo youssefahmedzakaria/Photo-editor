@@ -82,17 +82,86 @@ void Detect_Image_Edges(){
             }      
     }
 }
+void mirror(){
+    int reverse;
+    cout<<"1- up to down"<<endl;
+    cout<<"2- down to up"<<endl;
+    cout<<"3- right to left"<<endl;
+    cout<<"4- left to right"<<endl;
+    while (!(cin>>reverse))
+    {
+        cout<<"enter a valid num"<<endl;
+        cin.clear();
+        cin.ignore(123,'\n');
+    }
+    if (reverse==1)
+    {
+    for (int i = 0; i <= 127; i++) {
+        if (i!=0)
+        {
+            change-=1;
+        }
+        for (int j = 0; j<= 254; j++) {
+            image[change][j]=image[i][j];
+            }      
+    }
+    }
+    else if (reverse==2)
+    {
+    for (int i = 0; i <= 127; i++) {
+        if (i!=0)
+        {
+            change-=1;
+        }
+        for (int j = 0; j<= 254; j++) {
+            image[i][j]=image[change][j];
+            }      
+    }
+    }
+    else if (reverse==3)
+    {
+    for (int i = 0; i <= 254; i++) {
+        if (i!=0)
+        {
+            change=254;
+        }
+        for (int j = 0; j<= 127; j++) {
+            image[i][j]=image[i][change];
+            change-=1;
+            }      
+    }
+    }
+    else if (reverse==4)
+    {
+    for (int i = 0; i <= 254; i++) {
+        if (i!=0)
+        {
+            change=254;
+        }
+        for (int j = 0; j<= 127; j++) {
+            image[i][change]=image[i][j];
+            change-=1;
+            }      
+    }
+    }
+    else{
+        cout<<"enter a valid number"<<endl;
+        mirror();
+    }
+}
 void choose(){
-    cout<<"press 1 to black and white filter "<<endl;
-    cout<<"press 2 to invert image filter "<<endl;
-    cout<<"press 3 to merge images filter "<<endl;
-    cout<<"press 4 to flip filter "<<endl;
-    cout<<"press 5 to rotate filter "<<endl;
-    cout<<"press 6 to darken and lighten filter "<<endl;
-    cout<<"press 7 to detect images edges filter "<<endl;
-    cout<<"press 8 to enlarge image filter "<<endl;
-    cout<<"press 9 to shrink image filter "<<endl;
-    cout<<"press 10 to mirror filter "<<endl;
+    cout<<"press 0 to black and white filter "<<endl;
+    cout<<"press 1 to invert image filter "<<endl;
+    cout<<"press 2 to merge images filter "<<endl;
+    cout<<"press 3 to flip filter "<<endl;
+    cout<<"press 4 to rotate filter "<<endl;
+    cout<<"press 5 to darken and lighten filter "<<endl;
+    cout<<"press 6 to detect images edges filter "<<endl;
+    cout<<"press 7 to enlarge image filter "<<endl;
+    cout<<"press 8 to shrink image filter "<<endl;
+    cout<<"press 9 to mirror filter "<<endl;
+    cout<<"press 10 to shuffle filter "<<endl;
+    cout<<"press 11 to blur filter "<<endl;
 
     int x;
     cin.ignore();
@@ -102,9 +171,13 @@ void choose(){
         cin.clear();
         cin.ignore(123,'\n');
     }
-    if (x==1)
+    if (x==0)
     {
         black_and_white();
+    }
+    else if (x==1)
+    {
+        return;
     }
     else if (x==2)
     {
@@ -112,11 +185,11 @@ void choose(){
     }
     else if (x==3)
     {
-        return;
+        flip();
     }
     else if (x==4)
     {
-        flip();
+        return;
     }
     else if (x==5)
     {
@@ -124,11 +197,11 @@ void choose(){
     }
     else if (x==6)
     {
-        return;
+        Detect_Image_Edges();
     }
     else if (x==7)
     {
-        Detect_Image_Edges();
+        return;
     }
     else if (x==8)
     {
@@ -136,9 +209,18 @@ void choose(){
     }
     else if (x==9)
     {
+        mirror();
+    }
+    else if (x==10)
+    {
+        return;
+    }
+    else if (x==11)
+    {
         return;
     }
     else{
         choose();
     }
 }
+
