@@ -6,10 +6,11 @@
 
 using namespace std;
 unsigned char image[SIZE][SIZE];
-static int change = SIZE-1;
-void loadImage ();
-void choose ();
-void saveImage ();
+static int change = SIZE - 1;
+void loadImage();
+void choose();
+void saveImage();
+
 int main()
 {
     loadImage();
@@ -17,209 +18,258 @@ int main()
     saveImage();
     return 0;
 }
-void loadImage () {
+
+void loadImage() {
     char imageFileName[100];
 
-   // Get gray scale image file name
+    // Get gray scale image file name
     cout << "Enter the source image file name: ";
     cin >> imageFileName;
 
-   // Add to it .bmp extension and load image
-    strcat (imageFileName, ".bmp");
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
     readGSBMP(imageFileName, image);
 }
-void saveImage () {
+void saveImage() {
     char imageFileName[100];
 
-   // Get gray scale image target file name
+    // Get gray scale image target file name
     cout << "Enter the target image file name: ";
     cin >> imageFileName;
 
-   // Add to it .bmp extension and load image
-    strcat (imageFileName, ".bmp");
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
 }
-void flip(){
+void flip() {
     for (int i = 0; i <= 127; i++) {
-        if (i!=0)
+        if (i != 0)
         {
-            change-=1;
+            change -= 1;
         }
-        for (int j = 0; j<= 254; j++) {
-            swap(image[i][j],image[change][j]);
-            }      
+        for (int j = 0; j <= 254; j++) {
+            swap(image[i][j], image[change][j]);
+        }
     }
 }
-void black_and_white(){
+void black_and_white() {
     static long avg = 0;
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++) {
-            avg+=image[i][j];}      
+        for (int j = 0; j < SIZE; j++) {
+            avg += image[i][j];
+        }
     }
-    avg/=(SIZE*SIZE);
+    avg /= (SIZE * SIZE);
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++) {
-            if (image[i][j]>avg){
-                image[i][j]=255;
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] > avg) {
+                image[i][j] = 255;
             }
-            else{
-            image[i][j]=0;
+            else {
+                image[i][j] = 0;
             }
-    }      
+        }
     }
 }
-void Detect_Image_Edges(){
+void Detect_Image_Edges() {
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j< SIZE; j++) {
-            if (image[i][j]<127&&image[i][j+1]<127)
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] < 127 && image[i][j + 1] < 127)
             {
-                while (image[i][j+1]<127)
+                while (image[i][j + 1] < 127)
                 {
-                    image[i][j+1]=255;
-                    j+=1;
-                }          
+                    image[i][j + 1] = 255;
+                    j += 1;
+                }
             }
-            }      
+        }
     }
 }
-void mirror(){
+void mirror() {
     int reverse;
-    cout<<"1- up to down"<<endl;
-    cout<<"2- down to up"<<endl;
-    cout<<"3- right to left"<<endl;
-    cout<<"4- left to right"<<endl;
-    while (!(cin>>reverse))
+    cout << "1- up to down" << endl;
+    cout << "2- down to up" << endl;
+    cout << "3- right to left" << endl;
+    cout << "4- left to right" << endl;
+    while (!(cin >> reverse))
     {
-        cout<<"enter a valid num"<<endl;
+        cout << "enter a valid num" << endl;
         cin.clear();
-        cin.ignore(123,'\n');
+        cin.ignore(123, '\n');
     }
-    if (reverse==1)
+    if (reverse == 1)
     {
-    for (int i = 0; i <= 127; i++) {
-        if (i!=0)
-        {
-            change-=1;
+        for (int i = 0; i <= 127; i++) {
+            if (i != 0)
+            {
+                change -= 1;
+            }
+            for (int j = 0; j <= 254; j++) {
+                image[change][j] = image[i][j];
+            }
         }
-        for (int j = 0; j<= 254; j++) {
-            image[change][j]=image[i][j];
-            }      
     }
-    }
-    else if (reverse==2)
+    else if (reverse == 2)
     {
-    for (int i = 0; i <= 127; i++) {
-        if (i!=0)
-        {
-            change-=1;
+        for (int i = 0; i <= 127; i++) {
+            if (i != 0)
+            {
+                change -= 1;
+            }
+            for (int j = 0; j <= 254; j++) {
+                image[i][j] = image[change][j];
+            }
         }
-        for (int j = 0; j<= 254; j++) {
-            image[i][j]=image[change][j];
-            }      
     }
-    }
-    else if (reverse==3)
+    else if (reverse == 3)
     {
-    for (int i = 0; i <= 254; i++) {
-        if (i!=0)
-        {
-            change=254;
+        for (int i = 0; i <= 254; i++) {
+            if (i != 0)
+            {
+                change = 254;
+            }
+            for (int j = 0; j <= 127; j++) {
+                image[i][j] = image[i][change];
+                change -= 1;
+            }
         }
-        for (int j = 0; j<= 127; j++) {
-            image[i][j]=image[i][change];
-            change-=1;
-            }      
     }
-    }
-    else if (reverse==4)
+    else if (reverse == 4)
     {
-    for (int i = 0; i <= 254; i++) {
-        if (i!=0)
-        {
-            change=254;
+        for (int i = 0; i <= 254; i++) {
+            if (i != 0)
+            {
+                change = 254;
+            }
+            for (int j = 0; j <= 127; j++) {
+                image[i][change] = image[i][j];
+                change -= 1;
+            }
         }
-        for (int j = 0; j<= 127; j++) {
-            image[i][change]=image[i][j];
-            change-=1;
-            }      
     }
-    }
-    else{
-        cout<<"enter a valid number"<<endl;
+    else {
+        cout << "enter a valid number" << endl;
         mirror();
     }
 }
-void choose(){
-    cout<<"press 0 to black and white filter "<<endl;
-    cout<<"press 1 to invert image filter "<<endl;
-    cout<<"press 2 to merge images filter "<<endl;
-    cout<<"press 3 to flip filter "<<endl;
-    cout<<"press 4 to rotate filter "<<endl;
-    cout<<"press 5 to darken and lighten filter "<<endl;
-    cout<<"press 6 to detect images edges filter "<<endl;
-    cout<<"press 7 to enlarge image filter "<<endl;
-    cout<<"press 8 to shrink image filter "<<endl;
-    cout<<"press 9 to mirror filter "<<endl;
-    cout<<"press 10 to shuffle filter "<<endl;
-    cout<<"press 11 to blur filter "<<endl;
+void invertimage() {
+    for (int i = 0; i < SIZE;i++) {
+        for (int j = 0; j < SIZE; j++) {
+            if (image[i][j] == 0) {
+                image[i][j] = 255;
+            }
+            else if (image[i][j] == 255) {
+                image[i][j] = 0;
+            }
+            else
+                image[i][j] = (255 - image[i][j]);
+                image[i][j] = image[i][j];
+        }
+    }
+}
+void Darken_and_Lighten_Image()
+{
+    char choose;
+    cout << "Do you want to (d)arken or (l)ighten?";
+    cin >> choose;
+    if (choose == 'd' || choose == 'D') {
+        for (int i = 0; i < SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = image[i][j] - 0.5 * (image[i][j]);
+                image[i][j] = image[i][j];
+            }
+        }
+    }
+    else if (choose == 'l' || choose == 'L') {
+        for (int i = 0; i < SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                unsigned char x = 0.5 * image[i][j];
+                unsigned char y = (127 + x);
+                if (y <= 0) {
+                    y = y + 225;
+                }
+                image[i][j] = y;
+                image[i][j] = image[i][j];
+            }
+        }
+    }
+    else {
+        cout << "invalid choice\n";
+    }
+}
+
+
+void choose() {
+    cout << "press 0 to black and white filter " << endl;
+    cout << "press 1 to invert image filter " << endl;
+    cout << "press 2 to merge images filter " << endl;
+    cout << "press 3 to flip filter " << endl;
+    cout << "press 4 to rotate filter " << endl;
+    cout << "press 5 to darken and lighten filter " << endl;
+    cout << "press 6 to detect images edges filter " << endl;
+    cout << "press 7 to enlarge image filter " << endl;
+    cout << "press 8 to shrink image filter " << endl;
+    cout << "press 9 to mirror filter " << endl;
+    cout << "press 10 to shuffle filter " << endl;
+    cout << "press 11 to blur filter " << endl;
 
     int x;
     cin.ignore();
-    while (!(cin>>x))
+    while (!(cin >> x))
     {
-        cout<<"enter a valid num"<<endl;
+        cout << "enter a valid num" << endl;
         cin.clear();
-        cin.ignore(123,'\n');
+        cin.ignore(123, '\n');
     }
-    if (x==0)
+    if (x == 0)
     {
         black_and_white();
     }
-    else if (x==1)
+    else if (x == 1)
+    {
+        invertimage();
+    }
+    else if (x == 2)
     {
         return;
     }
-    else if (x==2)
-    {
-        return;
-    }
-    else if (x==3)
+    else if (x == 3)
     {
         flip();
     }
-    else if (x==4)
+    else if (x == 4)
     {
         return;
     }
-    else if (x==5)
+    else if (x == 5)
     {
-        return;
+        Darken_and_Lighten_Image();
     }
-    else if (x==6)
+    else if (x == 6)
     {
         Detect_Image_Edges();
     }
-    else if (x==7)
+    else if (x == 7)
     {
         return;
     }
-    else if (x==8)
+    else if (x == 8)
     {
         return;
     }
-    else if (x==9)
+    else if (x == 9)
     {
         mirror();
     }
-    else if (x==10)
+    else if (x == 10)
     {
         return;
     }
-    else if (x==11)
+    else if (x == 11)
     {
         return;
     }
-    else{
+    else {
         choose();
     }
 }
