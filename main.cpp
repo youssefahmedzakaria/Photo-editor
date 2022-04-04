@@ -1,3 +1,11 @@
+// FCAI–CU - Programming 1 - Assignment 3
+// Program Name: photo Editor.cpp
+// Last Modification Date: 4/4/2022
+// Author1 : assem emad      
+// Author2 : youssef ahmed zakaria 
+// Author3 : tareq mahfouz 
+// Teaching Assistant: Eng nesma & yousra
+
 #include <iostream>
 #include <fstream>
 #include <cstring>
@@ -158,12 +166,8 @@ void invertimage() {
             if (image[i][j] == 0) {
                 image[i][j] = 255;
             }
-            else if (image[i][j] == 255) {
-                image[i][j] = 0;
-            }
             else
                 image[i][j] = (255 - image[i][j]);
-                image[i][j] = image[i][j];
         }
     }
 }
@@ -176,20 +180,13 @@ void Darken_and_Lighten_Image()
         for (int i = 0; i < SIZE;i++) {
             for (int j = 0; j < SIZE; j++) {
                 image[i][j] = image[i][j] - 0.5 * (image[i][j]);
-                image[i][j] = image[i][j];
             }
         }
     }
     else if (choose == 'l' || choose == 'L') {
-        for (int i = 0; i < SIZE;i++) {
+        for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                unsigned char x = 0.5 * image[i][j];
-                unsigned char y = (127 + x);
-                if (y <= 0) {
-                    y = y + 225;
-                }
-                image[i][j] = y;
-                image[i][j] = image[i][j];
+                image[i][j] = image[i][j] + 0.5 * (image[i][j]);
             }
         }
     }
