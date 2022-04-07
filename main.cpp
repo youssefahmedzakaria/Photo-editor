@@ -160,6 +160,7 @@ void mirror() {
         mirror();
     }
 }
+//function to invert the photo colors 1
 void invertimage() {
     for (int i = 0; i < SIZE;i++) {
         for (int j = 0; j < SIZE; j++) {
@@ -171,6 +172,7 @@ void invertimage() {
         }
     }
 }
+//function to darken and lighten the photo 5
 void Darken_and_Lighten_Image()
 {
     char choose;
@@ -186,7 +188,7 @@ void Darken_and_Lighten_Image()
     else if (choose == 'l' || choose == 'L') {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = image[i][j] + 0.5 * (image[i][j]);
+                image[i][j] = image[i][j] -= (image[i][j] + 256) / 2;
             }
         }
     }
