@@ -195,7 +195,68 @@ void Darken_and_Lighten_Image()
     }
 }
 
+void rotate() {
+    string userinput = "";
+    cout << "please choose if u want to rotate by 90 degrees or 180 or 270: ";
+    cin >> userinput;
+ if (userinput == "90") {
 
+
+        //90
+
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = i; j < SIZE; j++) {
+                int temp = image[i][j];
+                image[i][j] = image[j][i];
+                image[j][i] = temp;
+            }
+        }
+
+
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = 0; j < SIZE / 2; j++) {
+                int temp = image[i][j];
+                image[i][j] = image[i][SIZE - 1 - j];
+                image[i][SIZE - 1 - j] = temp;
+            }
+        }
+    }
+ else if (userinput == "180") {
+
+
+//180
+
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                swap(image[i][j], image[SIZE - i - 1][SIZE - j - 1]);
+            }
+
+        }
+    }
+ else if (userinput == "270") {
+
+
+//270
+
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = i; j < SIZE; ++j) {
+                swap(image[i][j], image[j][i]);
+
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = 0; j < SIZE / 2; j++) {
+                swap(image[i][j], image[j][SIZE - 1 - j]);
+            }
+        }
+    }
+ else {
+        cout << "invalid input";
+    }
+}
 void choose() {
     cout << "press 0 to black and white filter " << endl;
     cout << "press 1 to invert image filter " << endl;
@@ -236,7 +297,7 @@ void choose() {
     }
     else if (x == 4)
     {
-        return;
+        rotate();
     }
     else if (x == 5)
     {
