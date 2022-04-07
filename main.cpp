@@ -204,13 +204,13 @@ void rotate() {
  if (userinput == "90") {
 
 
-        //90
+        //90 to rotate by 90 degrees 
 
         for (int i = 0; i < SIZE; i++) {
 
             for (int j = i; j < SIZE; j++) {
                 int temp = image[i][j];
-                image[i][j] = image[j][i];
+                image[i][j] = image[j][i]; //flipping the photo
                 image[j][i] = temp;
             }
         }
@@ -220,15 +220,16 @@ void rotate() {
 
             for (int j = 0; j < SIZE / 2; j++) {
                 int temp = image[i][j];
-                image[i][j] = image[i][SIZE - 1 - j];
+                image[i][j] = image[i][SIZE - 1 - j]; //rotating by 90 degrees
                 image[i][SIZE - 1 - j] = temp;
             }
         }
     }
+    
  else if (userinput == "180") {
 
 
-//180
+//180 rotatong by 90 degrees 
 
         for (int i = 0; i < SIZE / 2; ++i) {
             for (int j = 0; j < SIZE; ++j) {
@@ -240,7 +241,7 @@ void rotate() {
  else if (userinput == "270") {
 
 
-//270
+//270 rotatong by 270 degrees 
 
         for (int i = 0; i < SIZE; ++i) {
             for (int j = i; j < SIZE; ++j) {
