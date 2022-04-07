@@ -210,7 +210,7 @@ void rotate() {
 
             for (int j = i; j < SIZE; j++) {
                 int temp = image[i][j];
-                image[i][j] = image[j][i]; //flipping the photo
+                image[i][j] = image[j][i]; //flipping the pixel rows with the pixel columns (keeping the diagonal pixels as it is)
                 image[j][i] = temp;
             }
         }
@@ -220,7 +220,7 @@ void rotate() {
 
             for (int j = 0; j < SIZE / 2; j++) {
                 int temp = image[i][j];
-                image[i][j] = image[i][SIZE - 1 - j]; //rotating by 90 degrees
+                image[i][j] = image[i][SIZE - 1 - j]; //rotating by 90 degrees by changing the postion of the pixel columns (original rows)
                 image[i][SIZE - 1 - j] = temp;
             }
         }
@@ -229,11 +229,11 @@ void rotate() {
  else if (userinput == "180") {
 
 
-//180 rotatong by 90 degrees 
+//180 //rotating by 180 degrees 
 
         for (int i = 0; i < SIZE / 2; ++i) {
             for (int j = 0; j < SIZE; ++j) {
-                swap(image[i][j], image[SIZE - i - 1][SIZE - j - 1]);
+                swap(image[i][j], image[SIZE - i - 1][SIZE - j - 1]); // swapping the first pixel row with the before last row and same goes for other pixel rows and columns
             }
 
         }
@@ -241,18 +241,18 @@ void rotate() {
  else if (userinput == "270") {
 
 
-//270 rotatong by 270 degrees 
+//270 //rotatong by 270 degrees 
 
         for (int i = 0; i < SIZE; ++i) {
             for (int j = i; j < SIZE; ++j) {
-                swap(image[i][j], image[j][i]);
+                swap(image[i][j], image[j][i]); //swapping the pixel row with pixel column 
 
             }
         }
         for (int i = 0; i < SIZE; i++) {
 
             for (int j = 0; j < SIZE / 2; j++) {
-                swap(image[i][j], image[j][SIZE - 1 - j]);
+                swap(image[i][j], image[j][SIZE - 1 - j]); //changing only the pixel columns (original rows) to keep the diagonal pixels as it is
             }
         }
     }
