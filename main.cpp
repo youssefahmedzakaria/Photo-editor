@@ -13,7 +13,8 @@
 #include "bmplib.cpp"
 
 using namespace std;
-unsigned char image[SIZE][SIZE];
+unsigned char image[SIZE][SIZE];    
+unsigned char output_image[SIZE][SIZE];
 static int change = SIZE - 1;
 void loadImage();
 void choose();
@@ -48,6 +49,7 @@ void saveImage() {
     // Add to it .bmp extension and load image
     strcat(imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
+    writeGSBMP(imageFileName, output_image);
 }
 void flip() {
     for (int i = 0; i <= 127; i++) {
@@ -160,7 +162,7 @@ void mirror() {
         mirror();
     }
 }
-//function to invert the photo colors 1
+
 void invertimage() {
     for (int i = 0; i < SIZE;i++) {
         for (int j = 0; j < SIZE; j++) {
@@ -172,7 +174,7 @@ void invertimage() {
         }
     }
 }
-//function to darken and lighten the photo 5
+
 void Darken_and_Lighten_Image()
 {
     char choose;
@@ -181,7 +183,7 @@ void Darken_and_Lighten_Image()
     if (choose == 'd' || choose == 'D') {
         for (int i = 0; i < SIZE;i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = image[i][j] - 0.5 * (image[i][j]);
+                image[i][j] = image[i][j] += (image[i][j] + 256) / 2;
             }
         }
     }
@@ -201,7 +203,7 @@ void rotate() {
     string userinput = "";
     cout << "please choose if u want to rotate by 90 degrees or 180 or 270: ";
     cin >> userinput;
- if (userinput == "90") {
+    if (userinput == "90") {
 
 
         //90 to rotate by 90 degrees 
@@ -225,11 +227,11 @@ void rotate() {
             }
         }
     }
-    
- else if (userinput == "180") {
+
+    else if (userinput == "180") {
 
 
-//180 //rotating by 180 degrees 
+        //180 //rotating by 180 degrees 
 
         for (int i = 0; i < SIZE / 2; ++i) {
             for (int j = 0; j < SIZE; ++j) {
@@ -238,10 +240,10 @@ void rotate() {
 
         }
     }
- else if (userinput == "270") {
+    else if (userinput == "270") {
 
 
-//270 //rotatong by 270 degrees 
+        //270 //rotatong by 270 degrees 
 
         for (int i = 0; i < SIZE; ++i) {
             for (int j = i; j < SIZE; ++j) {
@@ -256,9 +258,64 @@ void rotate() {
             }
         }
     }
- else {
+    else {
         cout << "invalid input";
     }
+}
+
+void enlarge() {
+    cout << "which quarter do want to enlarge : \n";
+    int choose;
+    cout << "1- first quarter \n";
+    cout << "2- second quarter \n";
+    cout << "3- third quarter \n";
+    cout << "4- fourth quarter \n";
+    cin >> choose;
+    if (choose == 1) {
+        for (int i = 0, x=0; i <= SIZE/2; i++, x+=2) {
+            for (int j = 0, y=0; j< SIZE/2; j++, y+=2) {
+                output_image[x][y] = image[i][j];
+                output_image[x][y-1] = image[i][j];
+                output_image[x-1][y] = image[i][j];
+                output_image[x-1][y-1] = image[i][j]; 
+            }
+        }
+    }
+
+    else if (choose == 2){
+        for (int i = 0, x = 0; i <= SIZE/2; i++, x+=2) {
+            for (int j = SIZE/2, y=0; j< SIZE; j++, y+=2){
+                output_image[x][y] = image[i][j];
+                output_image[x][y-1] = image[i][j];
+                output_image[x-1][y] = image[i][j];
+                output_image[x-1][y-1] = image[i][j]; 
+            }
+        }
+    }
+    else if (choose == 3){
+        for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
+            for (int j = 0, y=0; j< SIZE/2; j++, y+=2) {
+                output_image[x][y] = image[i][j];
+                output_image[x][y-1] = image[i][j];
+                output_image[x-1][y] = image[i][j];
+                output_image[x-1][y-1] = image[i][j]; 
+        }
+    }
+    }
+    else if (choose == 4){
+        for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
+            for (int j = SIZE/2, y=0; j< SIZE; j++, y+=2) {
+                output_image[x][y] = image[i][j];
+                output_image[x][y-1] = image[i][j];
+                output_image[x-1][y] = image[i][j];
+                output_image[x-1][y-1] = image[i][j]; 
+            }
+        }
+    }
+    else
+    cout<<"wrong input, salam; \n";
+
+
 }
 void choose() {
     cout << "press 0 to black and white filter " << endl;
@@ -312,7 +369,7 @@ void choose() {
     }
     else if (x == 7)
     {
-        return;
+        enlarge();
     }
     else if (x == 8)
     {
