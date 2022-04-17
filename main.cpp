@@ -315,8 +315,571 @@ void enlarge() {
     else
     cout<<"wrong input, salam; \n";
 
-
 }
+
+void shuffle(){
+int choice;
+cout<<"Which order do you want to print the image"<<endl;
+cout<<"1.  1-2-3-4"<<endl;
+cout<<"2.  1-2-4-3"<<endl;
+cout<<"3.  1-3-2-4"<<endl;
+cout<<"4.  1-3-4-2"<<endl;
+cout<<"5.  1-4-3-2"<<endl;
+cout<<"6.  1-4-2-3"<<endl;
+cout<<"7.  2-1-3-4"<<endl;
+cout<<"8.  2-1-4-3"<<endl;
+cout<<"9.  2-3-1-4"<<endl;
+cout<<"10. 2-3-4-1"<<endl;
+cout<<"11. 2-4-1-3"<<endl;
+cout<<"12. 2-4-3-1"<<endl;
+cout<<"13. 3-1-2-4"<<endl;
+cout<<"14. 3-1-4-2"<<endl;
+cout<<"15. 3-2-1-4"<<endl;
+cout<<"16. 3-2-4-1"<<endl;
+cout<<"17. 3-4-1-2"<<endl;
+cout<<"18. 3-4-2-1"<<endl;
+cout<<"19. 4-1-2-3"<<endl;
+cout<<"20. 4-1-3-2"<<endl;
+cout<<"21. 4-2-1-3"<<endl;
+cout<<"22. 4-2-3-1"<<endl;
+cout<<"23. 4-3-1-2"<<endl;
+cout<<"24. 4-3-2-1"<<endl;
+
+cin>>choice;
+if (choice==1){
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+
+    if (choice==2){
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l = SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k = 0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l = SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k =SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==3){
+        for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0, l = SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+    if (choice==4){
+        for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==5){
+    for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==6){
+        for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i<= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==7){
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+    if(choice==8){
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==9){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+    if (choice==10){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==11){
+            for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==12){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if(choice==13){
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+    if (choice==14){
+         for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==15){
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+    }
+    if (choice==16){
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==17){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+          for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==18){
+          for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+
+          for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==19){
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2,k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j<SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==20){
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==21){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++,k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+          for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==22){
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0; i <= SIZE/2; i++) {
+          for (int j = SIZE/2; j< SIZE; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2; i <= SIZE; i++) {
+          for (int j = 0; j< SIZE/2; j++) {
+                output_image[i][j]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==23){
+       for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+         for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+          }
+         }
+    }
+    if (choice==24){
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+            for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+            }
+        }
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+            for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+            }
+        }
+        for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+            for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                output_image[l][k]=image[i][j];
+            }
+        }
+        for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+            for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                output_image[l][k]=image[i][j];
+            }
+        }
+    }
+}
+
+
+
 void choose() {
     cout << "press 0 to black and white filter " << endl;
     cout << "press 1 to invert image filter " << endl;
@@ -381,7 +944,7 @@ void choose() {
     }
     else if (x == 10)
     {
-        return;
+        shuffle();
     }
     else if (x == 11)
     {
