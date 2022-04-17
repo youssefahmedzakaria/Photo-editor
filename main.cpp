@@ -81,18 +81,36 @@ void black_and_white() {
         }
     }
 }
-void Detect_Image_Edges() {
+void Detect_Image_Edges(){
+    static long avg = 0;
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            if (image[i][j] < 127 && image[i][j + 1] < 127)
+        for (int j = 0; j< SIZE; j++) {
+            avg+=image[i][j];}  // taking the sum of every elemnt in the array    
+    }
+    avg/=(SIZE*SIZE);//caculate the average color
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            if (image[i][j]<avg&&image[i][j+1]<avg)
             {
-                while (image[i][j + 1] < 127)
+                while (image[i][j+4]<avg) // if there is a black cell and black cells after it , makes theses cells white
                 {
-                    image[i][j + 1] = 255;
-                    j += 1;
-                }
+                    if (image[i+1][j]<avg)
+                    {
+                        image[i][j+2]=255;
+                        j+=1;
+                    }
+                    else{
+                        j+=1;
+                    }
+                    
+                }          
             }
-        }
+            if (image[i][j]>avg) // if cell is white , make it white
+            {
+                image[i][j]=255;
+            }
+            
+            }      
     }
 }
 void mirror() {
