@@ -66,7 +66,214 @@ void invertimage() {
         }
     }
 }
-
+void black_and_white() {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            for (int x = 0; x < RGB; x++){
+        if(x ==0){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x] =255;
+            image[i][j][x+1] =255;
+            image[i][j][x+2] =255;
+        }
+            else{
+            image[i][j][x] =0;
+            image[i][j][x+1] =0;
+            image[i][j][x+2] =0;
+            }
+            }
+        if(x ==1){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x-1] =255;
+            image[i][j][x] =255;
+            image[i][j][x+1] =255;
+        }
+            else{
+            image[i][j][x-1] =0;
+            image[i][j][x] =0;
+            image[i][j][x+1] =0;
+            }
+            }
+        if(x ==2){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x-2] =255;
+            image[i][j][x-1] =255;
+            image[i][j][x] =255;
+            }
+            else{
+            image[i][j][x-2] =0;
+            image[i][j][x-1] =0;
+            image[i][j][x] =0;
+            }
+            }
+        }
+    }
+    }
+}
+void flip(){
+    cout<<"1-horizontal"<<endl;
+    cout<<"2-vertical"<<endl;
+    int x;
+    while (!(cin>>x)) // check if input!= int then he will ask user to input an int
+    {
+        cout<<"enter a valid num"<<endl;
+        cin.clear();
+        cin.ignore(123,'\n');
+    }
+    if(x==1)
+    {for (int i = 0; i < SIZE/2; i++) {
+        if (i!=0)
+        {
+            change-=1;
+            }
+    for (int j = 0; j< SIZE; j++) 
+    {
+        for (int x = 0; x < RGB; x++){
+            swap(image[i][j][x] ,image[change][j][x]);
+            }
+            }
+    }  
+    }
+    else if(x==2){
+        for (int i = 0; i < SIZE; i++) {
+            change = 254;
+        for (int j = 0; j<= 127; j++) 
+        {
+            if(j!=0){
+                change-=1;
+            }
+            for (int x = 0; x < RGB; x++){
+                swap(image[i][j][x] ,image[i][change][x]);
+                }
+                }
+    }  
+    }
+    if(x!=1 && x!=2){
+        cout<<"please write a valid number"<<endl;
+        flip();
+    } 
+}
+void mirror(){
+    int reverse;
+    cout<<"1- up to down"<<endl;
+    cout<<"2- down to up"<<endl;
+    cout<<"3- right to left"<<endl;
+    cout<<"4- left to right"<<endl;
+    while (!(cin>>reverse))
+    {
+        cout<<"enter a valid num"<<endl;
+        cin.clear();
+        cin.ignore(123,'\n');
+    }
+    if (reverse==1)
+    {
+    for (int i = 0; i <= 127; i++) {
+        if (i!=0)
+        {
+            change-=1;
+        }
+        for (int j = 0; j<= 254; j++) {
+            for(int x = 0; x <= RGB ; x++)
+            {image[change][j][x]=image[i][j][x];}// replacing last rows by first rows
+            }      
+    }
+    }
+    else if (reverse==2)
+    {
+    for (int i = 0; i <= 127; i++) {
+        if (i!=0)
+        {
+            change-=1;
+        }
+        for (int j = 0; j<= 254; j++) {
+            for(int x = 0; x <= RGB ; x++)
+            {image[i][j][x]=image[change][j][x];}// replacing first last rows by last rows
+            }      
+    }
+    }
+    else if (reverse==3)
+    {
+    for (int i = 0; i <= 254; i++) {
+        if (i!=0)
+        {
+            change=254;
+        }
+        for (int j = 0; j<= 127; j++) {
+            for(int x = 0; x <= RGB ; x++)
+            {image[i][j][x]=image[i][change][x];} //replacing first coulmns by last coulmns
+            change-=1;
+            }      
+    }
+    }
+    else if (reverse==4)
+    {
+    for (int i = 0; i <= 254; i++) {
+        if (i!=0)
+        {
+            change=254;
+        }
+        for (int j = 0; j<= 127; j++) {
+            for(int x = 0; x <= RGB ; x++)
+            {image[i][change][x]=image[i][j][x];}//replacing last coulmns by first coulmns
+            change-=1;
+            }      
+    }
+    }
+    else{
+        cout<<"enter a valid number"<<endl;
+        mirror();
+    }
+}
+void Detect_Image_Edges(){
+for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j< SIZE; j++) {
+            for (int x = 0; x < RGB; x++){
+        if(x ==0){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x] =255;
+            image[i][j][x+1] =255;
+            image[i][j][x+2] =255;
+        }
+            else{
+            image[i][j][x] =0;
+            image[i][j][x+1] =0;
+            image[i][j][x+2] =0;
+            }
+            }
+        if(x ==1){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x-1] =255;
+            image[i][j][x] =255;
+            image[i][j][x+1] =255;
+        }
+            else{
+            image[i][j][x-1] =0;
+            image[i][j][x] =0;
+            image[i][j][x+1] =0;
+            }
+            }
+        if(x ==2){
+            if (image[i][j][x] < 127 )
+        {
+            image[i][j][x-2] =255;
+            image[i][j][x-1] =255;
+            image[i][j][x] =255;
+            }
+            else{
+            image[i][j][x-2] =0;
+            image[i][j][x-1] =0;
+            image[i][j][x] =0;
+            }
+            }
+        }
+    }
+    }
+}
 
 void choose() {
     cout << "press 0 to black and white filter " << endl;
@@ -92,7 +299,7 @@ void choose() {
     }
     if (x == 0)
     {
-       // black_and_white();
+        black_and_white();
     }
     else if (x == 1)
     {
@@ -104,7 +311,7 @@ void choose() {
     }
     else if (x == 3)
     {
-     //   flip();
+        flip();
     }
     else if (x == 4)
     {
@@ -116,7 +323,7 @@ void choose() {
     }
     else if (x == 6)
     {
-        //Detect_Image_Edges();
+        Detect_Image_Edges();
     }
     else if (x == 7)
     {
@@ -128,7 +335,7 @@ void choose() {
     }
     else if (x == 9)
     {
-     //   mirror();
+        mirror();
     }
     else if (x == 10)
     {
