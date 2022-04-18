@@ -236,54 +236,40 @@ void mirror() {
         mirror();
     }
 }
-void Detect_Image_Edges() {
+void Detect_Image_Edges(){
     for (int i = 0; i < SIZE; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            for (int x = 0; x < RGB; x++) {
-                if (x == 0) {
-                    if (image[i][j][x] < 127)
+        for (int j = 0; j< SIZE; j++) {
+            for(int x = 0 ; x<RGB ; x++)
+            {if (image[i][j][x]<127)
+            {
+                while ((image[i][j][x]<=image[i][j+1][x]+10 &&image[i][j][x]>=image[i][j+1][x]) || (image[i][j][x]+10>=image[i][j+1][x]&&image[i][j][x]<=image[i][j+1][x])) // if there is a black cell and black cells after it , makes theses cells white
+                {
+                    if((image[i][j][x]<=image[i+1][j][x]+10&&image[i][j][x]>=image[i+1][j][x])||(image[i][j][x]+10>=image[i+1][j][x]&&image[i][j][x]<=image[i+1][j][x]))
                     {
-                        image[i][j][x] = 255;
-                        image[i][j][x + 1] = 255;
-                        image[i][j][x + 2] = 255;
-                    }
-                    else {
-                        image[i][j][x] = 0;
-                        image[i][j][x + 1] = 0;
-                        image[i][j][x + 2] = 0;
-                    }
+                    if(x ==0){
+                        image[i][j][x] =255;
+                        image[i][j][x+1] =255;
+                        image[i][j][x+2] =255;}
+                    if(x ==1){
+                        image[i][j][x-1] =255;
+                        image[i][j][x] =255;
+                        image[i][j][x+1] =255;
+                        }
+                    if(x ==2){
+                        image[i][j][x-2] =255;
+                        image[i][j][x-1] =255;
+                        image[i][j][x] =255;
+                        }
+                    j+=1;}
+                else{
+                    j+=1;
                 }
-                if (x == 1) {
-                    if (image[i][j][x] < 127)
-                    {
-                        image[i][j][x - 1] = 255;
-                        image[i][j][x] = 255;
-                        image[i][j][x + 1] = 255;
-                    }
-                    else {
-                        image[i][j][x - 1] = 0;
-                        image[i][j][x] = 0;
-                        image[i][j][x + 1] = 0;
-                    }
-                }
-                if (x == 2) {
-                    if (image[i][j][x] < 127)
-                    {
-                        image[i][j][x - 2] = 255;
-                        image[i][j][x - 1] = 255;
-                        image[i][j][x] = 255;
-                    }
-                    else {
-                        image[i][j][x - 2] = 0;
-                        image[i][j][x - 1] = 0;
-                        image[i][j][x] = 0;
-                    }
-                }
+            }          
             }
-        }
+            }
+            }      
     }
 }
-
 void Darken_and_Lighten_Image()
 {
     char choose;
