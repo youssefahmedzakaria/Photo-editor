@@ -275,6 +275,128 @@ for (int i = 0; i < SIZE; i++) {
     }
 }
 
+void Darken_and_Lighten_Image()
+{
+    char choose;
+    cout << "Do you want to (d)arken or (l)ighten?";
+    cin >> choose;
+    if (choose == 'd' || choose == 'D') {
+        for (int i = 0; i < SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                for (int k = 0; k < RGB; k++){
+                image[i][j][k] -= (image[i][j][k]) / 2;
+                output_image[i][j][k] = image[i][j][k];
+                }
+            }
+        }
+    }
+    else if (choose == 'l' || choose == 'L') {
+        for (int i = 0; i < SIZE;i++) {
+            for (int j = 0; j < SIZE; j++) {
+                for (int k = 0; k < RGB; k++){
+                image[i][j][k] += (image[i][j][k] ) / 2;
+                output_image[i][j][k] = image[i][j][k];
+                }
+            }
+        }
+    }
+    else {
+        cout << "invalid choice\n";
+    }
+}
+
+void enlarge() {
+    cout << "which quarter do want to enlarge : \n";
+    int choose;
+    cout << "1- first quarter \n";
+    cout << "2- second quarter \n";
+    cout << "3- third quarter \n";
+    cout << "4- fourth quarter \n";
+    cin >> choose;
+    if (choose == 1) {
+        for (int i = 0, x=0; i <= SIZE/2; i++, x+=2) {
+            for (int j = 0, y=0; j< SIZE/2; j++, y+=2) {
+                for (int k = 0; k < RGB; k++){
+                output_image[x][y][k] = image[i][j][k];
+                output_image[x][y-1][k] = image[i][j][k];
+                output_image[x-1][y][k] = image[i][j][k];
+                output_image[x-1][y-1][k] = image[i][j][k]; 
+                }
+            }
+        }
+    }
+
+    else if (choose == 2){
+        for (int i = 0, x = 0; i <= SIZE/2; i++, x+=2) {
+            for (int j = SIZE/2, y=0; j< SIZE; j++, y+=2){
+                for (int k = 0; k < RGB; k++){
+                output_image[x][y][k] = image[i][j][k];
+                output_image[x][y-1][k] = image[i][j][k];
+                output_image[x-1][y][k] = image[i][j][k];
+                output_image[x-1][y-1][k] = image[i][j][k]; 
+                }
+            }
+        }
+    }
+    else if (choose == 3){
+        for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
+            for (int j = 0, y=0; j< SIZE/2; j++, y+=2) {
+                for (int k = 0; k < RGB; k++){
+                output_image[x][y][k] = image[i][j][k];
+                output_image[x][y-1][k] = image[i][j][k];
+                output_image[x-1][y][k] = image[i][j][k];
+                output_image[x-1][y-1][k] = image[i][j][k]; 
+                }
+            }
+        }
+    }
+    else if (choose == 4){
+        for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
+            for (int j = SIZE/2, y=0; j< SIZE; j++, y+=2) {
+                for (int k = 0; k < RGB; k++){
+                output_image[x][y][k] = image[i][j][k];
+                output_image[x][y-1][k] = image[i][j][k];
+                output_image[x-1][y][k] = image[i][j][k];
+                output_image[x-1][y-1][k] = image[i][j][k]; 
+                }
+            }
+        }
+    }
+    else
+    cout<<"wrong input, salam; \n";
+}
+
+void shuffle(){
+
+        for (int i = 0, l=SIZE/2; i <= SIZE/2, l<SIZE; i++, l++) {
+          for (int j = 0, k=0; j< SIZE/2, k<SIZE/2; j++, k++) {
+                for (int r = 0; r < RGB; r++){
+                output_image[l][k][r]=image[i][j][r];
+                }
+            }
+        }
+        for (int i = 0, l=0; i <= SIZE/2, l<SIZE/2; i++, l++) {
+          for (int j = SIZE/2, k=0; j< SIZE, k<SIZE/2; j++, k++) {
+                for (int r = 0; r < RGB; r++){
+                output_image[l][k][r]=image[i][j][r];
+                }
+            }
+        }
+        for (int i = SIZE/2, l=SIZE/2; i <= SIZE, l<SIZE; i++, l++) {
+          for (int j = 0, k=SIZE/2; j< SIZE/2, k<SIZE; j++, k++) {
+                for (int r = 0; r < RGB; r++){
+                output_image[l][k][r]=image[i][j][r];
+                }
+            }
+        }
+        for (int i = SIZE/2, l=0; i <= SIZE, l<SIZE/2; i++,l++) {
+          for (int j = SIZE/2, k=SIZE/2; j< SIZE, k<SIZE; j++,k++) {
+                for (int r = 0; r < RGB; r++){
+                output_image[l][k][r]=image[i][j][r];
+                }
+            }
+        }
+    }
 void choose() {
     cout << "press 0 to black and white filter " << endl;
     cout << "press 1 to invert image filter " << endl;
@@ -319,7 +441,7 @@ void choose() {
     }
     else if (x == 5)
     {
-    //    Darken_and_Lighten_Image();
+        Darken_and_Lighten_Image();
     }
     else if (x == 6)
     {
@@ -327,7 +449,7 @@ void choose() {
     }
     else if (x == 7)
     {
-       // enlarge();
+        enlarge();
     }
     else if (x == 8)
     {
@@ -339,7 +461,7 @@ void choose() {
     }
     else if (x == 10)
     {
-        //shuffle();
+        shuffle();
     }
     else if (x == 11)
     {
