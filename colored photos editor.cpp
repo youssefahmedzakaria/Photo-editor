@@ -19,6 +19,8 @@ static int change = SIZE - 1;
 void loadImage();
 void choose();
 void saveImage();
+void loadImage(unsigned char image[SIZE][SIZE][RGB]);
+void saveImage(unsigned char image[SIZE][SIZE][RGB]);
 
 int main()
 {
@@ -29,6 +31,17 @@ int main()
 }
 
 void loadImage() {
+    char imageFileName[100];
+
+    // Get gray scale image file name
+    cout << "Enter the source image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    readRGBBMP(imageFileName, image);
+}
+void loadImage(unsigned char image[SIZE][SIZE][RGB]) {
     char imageFileName[100];
 
     // Get gray scale image file name
@@ -51,6 +64,109 @@ void saveImage() {
     writeRGBBMP(imageFileName, image);
     writeRGBBMP(imageFileName, output_image);
 }
+void saveImage(unsigned char image[SIZE][SIZE][RGB]) {
+    char imageFileName[100];
+
+    // Get gray scale image target file name
+    cout << "Enter the target image file name: ";
+    cin >> imageFileName;
+
+    // Add to it .bmp extension and load image
+    strcat(imageFileName, ".bmp");
+    writeRGBBMP(imageFileName, image);
+    writeRGBBMP(imageFileName, output_image);
+}
+void merge(){
+    unsigned char image[SIZE][SIZE][RGB];
+    unsigned char image2[SIZE][SIZE][RGB];
+    unsigned char res_image[SIZE][SIZE][RGB];
+    loadImage(image);
+    loadImage(image2);
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            for (int k = 0; k < 3; ++k) {
+                res_image[i][j][k] = (((image[i][j][k])+(image2[i][j][k])) / 2 );
+            }
+
+        }
+    }
+    saveImage(res_image);
+}
+
+void rotate(){
+    //90
+    cout << "by how many degrees do u want to rotate? type 90 or 180 or 270: ";
+    int userinput;
+    cin>>userinput;
+    if(userinput==90) {
+
+
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = i; j < SIZE; j++) {
+                for (int k = 0; k < RGB; ++k) {
+                    int temp = image[i][j][k];
+                    image[i][j][k] = image[j][i][k];
+                    image[j][i][k] = temp;
+                }
+
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = 0; j < SIZE / 2; j++) {
+                for (int k = 0; k < RGB; ++k) {
+                    int temp = image[i][j][k];
+                    image[i][j][k] = image[i][SIZE - 1 - j][k];
+                    image[i][SIZE - 1 - j][k] = temp;
+                }
+
+            }
+        }
+    }
+
+        //180
+    else if (userinput==180){
+
+        for (int i = 0; i < SIZE/2; ++i) {
+            for (int j = 0; j <SIZE ; ++j) {
+                for (int k = 0; k <RGB ; ++k) {
+
+
+                    swap(image[i][j][k],image[SIZE-i-1][SIZE-j-1][k]);
+                }
+            }
+
+        }
+    }
+
+ else if (userinput==270){
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = i; j < SIZE; ++j) {
+                for (int k = 0; k < RGB; ++k) {
+
+
+                    swap(image[i][j][k], image[j][i][k]);
+                }
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+
+            for (int j = 0; j < SIZE/2; j++) {
+                for (int k = 0; k < RGB; ++k) {
+
+
+                    swap(image[i][j][k], image[j][SIZE - 1 - j][k]);
+                }
+            }
+        }
+ }
+ else {
+        cout << "invalid input";
+    }
+}
+
 
 void invertimage() {
     for (int i = 0; i < SIZE;i++) {
@@ -270,6 +386,22 @@ void Detect_Image_Edges(){
             }      
     }
 }
+void blur(){
+
+    double average;
+
+    for (int i = 0; i <SIZE; i++) {
+        for (int j = 0; j<SIZE; j++) {
+            for (int k =0 ; k <3; k++){
+                int sum = 0;
+                sum = image[i ][j ][k] + image[i ][j+1][k] + image[i][j + 2][k] + image[i+1][j][k] + image[i+1][j+1][k] +image[i+1][j +2][k] + image[i +2][j ][k] + image[i + 2][j+1][k] + image[i + 2][j + 2][k];
+                average = (sum / 9);
+                image[i][j][k] = average;
+            }
+
+        }
+    }
+}
 void Darken_and_Lighten_Image()
 {
     char choose;
@@ -392,6 +524,80 @@ void shuffle() {
         }
     }
 }
+string shrink_response(){
+    string ratio;
+    cout << "Do you wish to Shrink to (1/2), (1/3) or (1/4) ? write only the number without brackets, to exit from filter enter 0" << endl;
+    while(true) {
+        cout << "what ratio you want to shrink photo to it : " << endl;
+        cin >> ratio;
+        if ((ratio == "1/2") or (ratio == "1/3") or (ratio == "1/4")) {
+            return ratio;
+        }
+        else if(ratio == "0"){
+            cout << "end filter " << endl;
+            return 0;
+        }
+        else {
+            cout << "please enter valid degree" << endl;
+            cin.ignore();
+        }
+    }
+}
+void Shrink(){
+    string ratio = shrink_response();
+    unsigned char image[SIZE][SIZE][RGB];
+    unsigned char shrink_image[SIZE][SIZE][RGB];
+    if(ratio != "0"){
+        // to make the shrink image array all have value 255 (white picture)
+        loadImage(image);
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                for (int k = 0; k < 3; ++k) {
+                    shrink_image[i][j][k] = 255;
+                }
+
+            }
+        }
+        // to make shrink to half 1/2
+        if(ratio == "1/2") {
+            for (int i = 0; i < (SIZE/2); i++) {
+                for (int j = 0; j < (SIZE/2); j++) {
+                    for (int k = 0; k < 3; ++k){
+                        shrink_image[i][j][k] = image[2 * i][2 * j][k];
+                    }
+
+                }
+            }
+            saveImage(shrink_image);
+        }
+        else if(ratio == "1/3"){
+            for (int i = 0; i < (SIZE/3); i++) {
+                for (int j = 0; j < (SIZE/3); j++) {
+                    for (int k = 0; k < 3; ++k){
+                        shrink_image[i][j][k] = image[3 * i][3 * j][k];
+                    }
+
+                }
+            }
+            saveImage(shrink_image);
+        }
+        else if(ratio == "1/4"){
+            for (int i = 0; i < (SIZE /4); i++) {
+                for (int j = 0; j < (SIZE /4); j++) {
+                    for (int k = 0; k < 3; ++k) {
+
+
+                        shrink_image[i][j][k] = image[4 * i][4 * j][k];
+                    }
+                }
+
+            }
+            saveImage(shrink_image);
+            cout << "end filter " << endl;
+        }
+    }
+}
+
 void choose() {
     cout << "press 0 to black and white filter " << endl;
     cout << "press 1 to invert image filter " << endl;
@@ -424,7 +630,7 @@ void choose() {
     }
     else if (x == 2)
     {
-        return;
+        merge();
     }
     else if (x == 3)
     {
@@ -432,7 +638,7 @@ void choose() {
     }
     else if (x == 4)
     {
-        //  rotate();
+          rotate();
     }
     else if (x == 5)
     {
@@ -448,7 +654,7 @@ void choose() {
     }
     else if (x == 8)
     {
-        return;
+       Shrink();
     }
     else if (x == 9)
     {
@@ -460,7 +666,7 @@ void choose() {
     }
     else if (x == 11)
     {
-        return;
+        blur();
     }
     else {
         choose();
