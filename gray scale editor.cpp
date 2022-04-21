@@ -240,14 +240,14 @@ void Darken_and_Lighten_Image()
     if (choose == 'd' || choose == 'D') {
         for (int i = 0; i < SIZE;i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = image[i][j] += (image[i][j] + 256) / 2;
+                image[i][j] = image[i][j] + (image[i][j] + 256) / 2;
             }
         }
     }
     else if (choose == 'l' || choose == 'L') {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = image[i][j] -= (image[i][j] + 256) / 2;
+                image[i][j] = image[i][j] - (image[i][j] + 256) / 2;
             }
         }
     }
