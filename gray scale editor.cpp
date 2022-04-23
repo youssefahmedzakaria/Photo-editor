@@ -1,9 +1,9 @@
 // FCAI–CU - Programming 1 - Assignment 3
 // Program Name: photo Editor.cpp
 // Last Modification Date: 4/4/2022
-// Author1 : assem emad      
-// Author2 : youssef ahmed zakaria 
-// Author3 : tareq mahfouz 
+// Author1 : assem emad
+// Author2 : youssef ahmed zakaria
+// Author3 : tareq mahfouz
 // Teaching Assistant: Eng nesma & yousra
 
 #include <iostream>
@@ -13,7 +13,8 @@
 #include "bmplib.cpp"
 
 using namespace std;
-unsigned char image[SIZE][SIZE];    
+unsigned char image[SIZE][SIZE];
+unsigned char image2[SIZE][SIZE];
 unsigned char output_image[SIZE][SIZE];
 static int change = SIZE - 1;
 void loadImage();
@@ -24,13 +25,14 @@ void saveImage(unsigned char image[SIZE][SIZE]);
 
 int main()
 {
-    loadImage();
+
     choose();
-    saveImage();
+
     return 0;
 }
 
-void loadImage() {
+
+void loadImage () {
     char imageFileName[100];
 
     // Get gray scale image file name
@@ -38,10 +40,11 @@ void loadImage() {
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
-    strcat(imageFileName, ".bmp");
+    strcat (imageFileName, ".bmp");
     readGSBMP(imageFileName, image);
+
 }
-void loadImage(unsigned char image[SIZE][SIZE]) {
+void loadImage (unsigned char image[SIZE][SIZE]) {
     char imageFileName[100];
 
     // Get gray scale image file name
@@ -49,10 +52,10 @@ void loadImage(unsigned char image[SIZE][SIZE]) {
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
-    strcat(imageFileName, ".bmp");
+    strcat (imageFileName, ".bmp");
     readGSBMP(imageFileName, image);
 }
-void saveImage(unsigned char image[SIZE][SIZE]) {
+void saveImage (unsigned char image[SIZE][SIZE]) {
     char imageFileName[100];
 
     // Get gray scale image target file name
@@ -60,11 +63,10 @@ void saveImage(unsigned char image[SIZE][SIZE]) {
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
-    strcat(imageFileName, ".bmp");
+    strcat (imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
-    writeGSBMP(imageFileName, output_image);
 }
-void saveImage() {
+void saveImage () {
     char imageFileName[100];
 
     // Get gray scale image target file name
@@ -72,10 +74,10 @@ void saveImage() {
     cin >> imageFileName;
 
     // Add to it .bmp extension and load image
-    strcat(imageFileName, ".bmp");
+    strcat (imageFileName, ".bmp");
     writeGSBMP(imageFileName, image);
-    writeGSBMP(imageFileName, output_image);
 }
+
 void flip() {
     for (int i = 0; i <= 127; i++) {
         if (i != 0)
@@ -110,7 +112,7 @@ void Detect_Image_Edges(){
     static long avg = 0;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
-            avg+=image[i][j];}  // taking the sum of every elemnt in the array    
+            avg+=image[i][j];}  // taking the sum of every elemnt in the array
     }
     avg/=(SIZE*SIZE);//caculate the average color
     for (int i = 0; i < SIZE; i++) {
@@ -127,15 +129,15 @@ void Detect_Image_Edges(){
                     else{
                         j+=1;
                     }
-                    
-                }          
+
+                }
             }
             if (image[i][j]>avg) // if cell is white , make it white
             {
                 image[i][j]=255;
             }
-            
-            }      
+
+        }
     }
 }
 
@@ -263,7 +265,7 @@ void rotate() {
     if (userinput == "90") {
 
 
-        //90 to rotate by 90 degrees 
+        //90 to rotate by 90 degrees
 
         for (int i = 0; i < SIZE; i++) {
 
@@ -288,7 +290,7 @@ void rotate() {
     else if (userinput == "180") {
 
 
-        //180 //rotating by 180 degrees 
+        //180 //rotating by 180 degrees
 
         for (int i = 0; i < SIZE / 2; ++i) {
             for (int j = 0; j < SIZE; ++j) {
@@ -300,11 +302,11 @@ void rotate() {
     else if (userinput == "270") {
 
 
-        //270 //rotatong by 270 degrees 
+        //270 //rotatong by 270 degrees
 
         for (int i = 0; i < SIZE; ++i) {
             for (int j = i; j < SIZE; ++j) {
-                swap(image[i][j], image[j][i]); //swapping the pixel row with pixel column 
+                swap(image[i][j], image[j][i]); //swapping the pixel row with pixel column
 
             }
         }
@@ -321,6 +323,7 @@ void rotate() {
 }
 
 void enlarge() {
+    loadImage(image);
     cout << "which quarter do want to enlarge : \n";
     int choose;
     cout << "1- first quarter \n";
@@ -334,9 +337,10 @@ void enlarge() {
                 output_image[x][y] = image[i][j];
                 output_image[x][y-1] = image[i][j];
                 output_image[x-1][y] = image[i][j];
-                output_image[x-1][y-1] = image[i][j]; 
+                output_image[x-1][y-1] = image[i][j];
             }
         }
+        saveImage(output_image);
     }
 
     else if (choose == 2){
@@ -345,9 +349,10 @@ void enlarge() {
                 output_image[x][y] = image[i][j];
                 output_image[x][y-1] = image[i][j];
                 output_image[x-1][y] = image[i][j];
-                output_image[x-1][y-1] = image[i][j]; 
+                output_image[x-1][y-1] = image[i][j];
             }
         }
+        saveImage(output_image);
     }
     else if (choose == 3){
         for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
@@ -355,9 +360,10 @@ void enlarge() {
                 output_image[x][y] = image[i][j];
                 output_image[x][y-1] = image[i][j];
                 output_image[x-1][y] = image[i][j];
-                output_image[x-1][y-1] = image[i][j]; 
+                output_image[x-1][y-1] = image[i][j];
+            }
         }
-    }
+        saveImage(output_image);
     }
     else if (choose == 4){
         for (int i = SIZE/2, x=0; i <= SIZE; i++, x+=2) {
@@ -365,37 +371,43 @@ void enlarge() {
                 output_image[x][y] = image[i][j];
                 output_image[x][y-1] = image[i][j];
                 output_image[x-1][y] = image[i][j];
-                output_image[x-1][y-1] = image[i][j]; 
+                output_image[x-1][y-1] = image[i][j];
             }
         }
+        saveImage(output_image);
     }
+
     else
-    cout<<"wrong input, salam; \n";
+        cout<<"wrong input, salam; \n";
 
 }
 
 void shuffle(){
-for (int i = 0, l = SIZE / 2; i <= SIZE / 2, l < SIZE; i++, l++) {
+    loadImage(image);
+        for (int i = 0, l = SIZE / 2; i <= SIZE / 2, l < SIZE; i++, l++) {
             for (int j = 0, k = 0; j < SIZE / 2, k < SIZE / 2; j++, k++) {
-                    output_image[l][k] = image[i][j];
+                output_image[l][k] = image[i][j];
+            }
         }
-    }
-    for (int i = 0, l = 0; i <= SIZE / 2, l < SIZE / 2; i++, l++) {
-        for (int j = SIZE / 2, k = 0; j < SIZE, k < SIZE / 2; j++, k++) {
-            output_image[l][k] = image[i][j];
+        for (int i = 0, l = 0; i <= SIZE / 2, l < SIZE / 2; i++, l++) {
+            for (int j = SIZE / 2, k = 0; j < SIZE, k < SIZE / 2; j++, k++) {
+                output_image[l][k] = image[i][j];
+            }
         }
-    }
-    for (int i = SIZE / 2, l = SIZE / 2; i <= SIZE, l < SIZE; i++, l++) {
-        for (int j = 0, k = SIZE / 2; j < SIZE / 2, k < SIZE; j++, k++) {
-            output_image[l][k] = image[i][j];
+        for (int i = SIZE / 2, l = SIZE / 2; i <= SIZE, l < SIZE; i++, l++) {
+            for (int j = 0, k = SIZE / 2; j < SIZE / 2, k < SIZE; j++, k++) {
+                output_image[l][k] = image[i][j];
+            }
         }
-    }
-    for (int i = SIZE / 2, l = 0; i <= SIZE, l < SIZE / 2; i++, l++) {
-        for (int j = SIZE / 2, k = SIZE / 2; j < SIZE, k < SIZE; j++, k++) {
-            output_image[l][k] = image[i][j];
+        for (int i = SIZE / 2, l = 0; i <= SIZE, l < SIZE / 2; i++, l++) {
+            for (int j = SIZE / 2, k = SIZE / 2; j < SIZE, k < SIZE; j++, k++) {
+                output_image[l][k] = image[i][j];
+            }
         }
+    saveImage(output_image);
     }
-}
+
+
 void blur(){
 
     double average;
@@ -485,8 +497,9 @@ void choose() {
     cout << "press 10 to shuffle filter " << endl;
     cout << "press 11 to blur filter " << endl;
 
+
     int x;
-    cin.ignore();
+
     while (!(cin >> x))
     {
         cout << "enter a valid num" << endl;
@@ -495,11 +508,15 @@ void choose() {
     }
     if (x == 0)
     {
+       loadImage();
         black_and_white();
+       saveImage();
     }
     else if (x == 1)
     {
+        loadImage();
         invertimage();
+        saveImage();
     }
     else if (x == 2)
     {
@@ -507,23 +524,33 @@ void choose() {
     }
     else if (x == 3)
     {
+        loadImage();
         flip();
+        saveImage();
     }
     else if (x == 4)
     {
+        loadImage();
         rotate();
+        saveImage();
     }
     else if (x == 5)
     {
+        loadImage();
         Darken_and_Lighten_Image();
+        saveImage();
     }
     else if (x == 6)
     {
+        loadImage();
         Detect_Image_Edges();
+        saveImage();
     }
     else if (x == 7)
     {
+      //  loadimage();
         enlarge();
+       // saveimage();
     }
     else if (x == 8)
     {
@@ -531,15 +558,21 @@ void choose() {
     }
     else if (x == 9)
     {
+        loadImage();
         mirror();
+        saveImage();
     }
     else if (x == 10)
     {
+       // loadimage();
         shuffle();
+        //saveimage();
     }
     else if (x == 11)
     {
+        loadImage();
         blur();
+        saveImage();
     }
     else {
         choose();
