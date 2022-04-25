@@ -176,10 +176,10 @@ void invertimage() {
         for (int j = 0; j < SIZE; j++) {
             for (int k = 0; k < RGB; k++) {
                 if (image[i][j][k] == 0) {
-                    output_image[i][j][k] = 255;
+                    image[i][j][k] = 255;
                 }
                 else {
-                    output_image[i][j][k] = (255 - image[i][j][k]);
+                    image[i][j][k] = (255 - image[i][j][k]);
                 }
             }
         }
